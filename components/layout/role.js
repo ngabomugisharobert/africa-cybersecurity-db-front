@@ -9,18 +9,21 @@ export const admin = [
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   },
   {
     name: "Users",
     key: "Users",
     icon: <FaUsers />,
     href: "/users",
+    id: 3
   }
 
 ]
@@ -32,27 +35,31 @@ export const user = [
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   }
 ]
 
-export const owner = [
+export const project_owner = [
   {
     name: "Overview",
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   }
 ]
 
@@ -62,12 +69,14 @@ export const manager = [
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   }
 ]
 
@@ -77,12 +86,14 @@ export const reviewer = [
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   }
 ]
 
@@ -93,12 +104,14 @@ export const implementer = [
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   }
 ]
 
@@ -109,11 +122,14 @@ export const coordinator = [
     key: "Overview",
     icon: <GrOverview />,
     href: "/dashboard",
+    id: 1
   },
+
   {
     name: "Projects",
     key: "Projects",
     icon: <GrProjects />,
     href: "/projects",
+    id: 2
   }
 ]
