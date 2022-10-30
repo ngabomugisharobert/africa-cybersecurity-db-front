@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { baseURL, fetchPost } from "../../../utils/fetchAPI";
+import jwt from "jsonwebtoken";
+import { Button } from "@material-tailwind/react";
 
-const index = () => {
+const Index = (props) => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    setLoading(true);
+    await fetchPost(`${baseURL}/auth/login`, { email, password })
+      .then((res) => {
+        console.log(res.data, "✅✅✅✅✅✅✅✅");
+        const token = res.data.token;
+        //save token into local storage
+        if (token) console.log("token decoded", jwt.decode(token));
+        localStorage.setItem("token", token);
+        setLoading(false);
+        router.push("/dashboard");
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err, "❌❌❌❌❌❌❌❌");
+        if (err) setError(err && err.response.data.error);
+      });
+  };
+
   return (
     <>
       <div className="container mx-auto">
@@ -23,15 +54,17 @@ const index = () => {
                 <div className="mb-4">
                   <label
                     className="block mb-2 text-sm font-bold text-gray-700"
-                    htmlFor="username"
+                    htmlFor="email"
                   >
-                    Username
+                    email
                   </label>
                   <input
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    id="username"
+                    id="email"
                     type="text"
-                    placeholder="Username"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="email"
                   />
                 </div>
                 <div className="mb-4">
@@ -42,14 +75,17 @@ const index = () => {
                     Password
                   </label>
                   <input
-                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="password"
                     type="password"
                     placeholder="******************"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
-                  <p className="text-xs italic text-red-500">
-                    Please choose a password.
-                  </p>
+                  {/* if there is an error display a message */}
+                  {error && (
+                    <p className="text-xs italic text-red-500">{error}</p>
+                  )}
                 </div>
                 <div className="mb-4">
                   <input
@@ -62,12 +98,13 @@ const index = () => {
                   </label>
                 </div>
                 <div className="mb-6 text-center">
-                  <button
+                  <Button
+                    onClick={handleSubmit}
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                     type="button"
                   >
                     Sign In
-                  </button>
+                  </Button>
                 </div>
                 <hr className="mb-6 border-t" />
                 <div className="text-center">
@@ -93,4 +130,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

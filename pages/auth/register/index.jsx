@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const index = () => {
+const Index = () => {
   return (
     <>
       {/* component */}
@@ -132,4 +132,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
