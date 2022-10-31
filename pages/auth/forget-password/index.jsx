@@ -15,7 +15,11 @@ const index = () => {
               className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
               style={{
                 backgroundImage:
-                  'url("https://source.unsplash.com/oWTW-jNGl9I/600x800")',
+                  'url("https://st3.depositphotos.com/1074452/13625/i/950/depositphotos_136250364-stock-photo-recover-password-shows-forgotten-passwords.jpg")',
+                  width: '50%',
+                  height: '50%',
+                  marginTop: 'auto',
+                  marginBottom: 'auto',
               }}
             />
             {/* Col */}
@@ -23,7 +27,7 @@ const index = () => {
               <div className="px-8 mb-4 text-center">
                 <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
                 <p className="mb-4 text-sm text-gray-700">
-                  We get it, stuff happens. Just enter your email address below
+                  Just enter your email address below
                   and we will send you a link to reset your password!
                 </p>
               </div>

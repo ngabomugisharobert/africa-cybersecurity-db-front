@@ -44,7 +44,11 @@ const Index = (props) => {
               className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
               style={{
                 backgroundImage:
-                  'url("https://source.unsplash.com/K4mSJ7kc0As/600x800")',
+                  'url("http://independentbanker.org/wp-content/uploads/2017/10/encryption_770.jpg")',
+                  width: '50%',
+                  height: '50%',
+                  marginTop: 'auto',
+                  marginBottom: 'auto',
               }}
             />
             {/* Col */}

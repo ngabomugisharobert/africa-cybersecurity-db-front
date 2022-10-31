@@ -12,11 +12,18 @@ const Index = () => {
           <div className="w-full xl:w-3/4 lg:w-11/12 flex">
             {/* Col */}
             <div
-              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
+              className="w-full flex justify-center h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
               style={{
                 backgroundImage:
-                  'url("https://source.unsplash.com/Mv9hjnEUHR4/600x800")',
-              }}
+                  'url("http://documents.trendmicro.com/images/TEx/articles/free-encryption.jpg")',
+                  display:'flex',
+                  justifyContent:"center",
+                  width: '50%',
+                  height: '50%',
+                  marginTop: 'auto',
+                  marginBottom: 'auto',
+                 
+                                }}
             />
             {/* Col */}
             <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
