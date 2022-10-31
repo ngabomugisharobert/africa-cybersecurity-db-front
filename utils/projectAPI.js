@@ -30,3 +30,15 @@ export const fetchPost_public_pending = async (url, data, token) => {
         return res.data
     }).catch(err => { return err })
 }
+
+export const fetchGet_one = async (url, id, token) => {
+    return await axios.get(`${url}/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Token ${token}`
+        }
+    }).then(res => {
+        return res.data
+    }).catch(err => { return err })
+}
