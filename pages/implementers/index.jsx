@@ -1,12 +1,13 @@
 import React from "react";
 import Layout from "../../components/layout";
-import Projects from "../../components/parts/projects";
+import Implementers from "../../components/parts/implementers";
+import Users from "../../components/parts/users";
 
 const Index = () => {
   return (
     <>
       <Layout>
-        <Projects />
+        <Implementers />
       </Layout>
     </>
   );

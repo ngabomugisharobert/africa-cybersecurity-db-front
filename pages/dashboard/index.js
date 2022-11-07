@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../components/layout'
-import Projects from '../../components/parts/Projects'
+import Projects from '../../components/parts/projects'
 
 const index = () => {
     return (

@@ -94,6 +94,13 @@ export const reviewer = [
     icon: <GrProjects />,
     href: "/projects",
     id: 2
+  },
+  {
+    name: "Implementers",
+    key: "Implementers",
+    icon: <FaUsers />,
+    href: "/implementers",
+    id: 3
   }
 ]
 

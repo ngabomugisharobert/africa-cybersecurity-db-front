@@ -9,7 +9,7 @@ import {
   baseURL,
 } from "../../utils/projectAPI";
 import { BsLink45Deg } from "react-icons/bs";
-import { Textarea } from "@material-tailwind/react";
+import { Option, Select, Textarea } from "@material-tailwind/react";
   import { ToastContainer, toast } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
   import Form from "react-bootstrap/Form";
@@ -23,6 +23,7 @@ import { Textarea } from "@material-tailwind/react";
     DialogBody,
     DialogFooter,
   } from "@material-tailwind/react";
+import { canCreateProject, canUpdateProjectProgress } from "../../helper/permissions";
 
   class Projects extends Component {
     state = {
@@ -162,6 +163,15 @@ import { Textarea } from "@material-tailwind/react";
       this.setState({ searchQuery: query, currentPage: 1 });
     };
 
+    showEditProjectProgress = (project)=>{
+      console.log(project)
+      this.setState(prev=>({...prev, selectedProject: project, showEditProgess: true}))
+    }
+
+    hideEditProjectProgress = ()=>{
+      this.setState(prev=>({...prev, selectedProject: undefined, showEditProgess: undefined}))
+    }
+
     render() {
       let countRow = 1;
       const {
@@ -183,14 +193,18 @@ import { Textarea } from "@material-tailwind/react";
           <div className="mt-5 container">
             <div className="alert alert-info">There are no applications</div>
 
+            {
+                canCreateProject()&&
             <button
               onClick={this.handleOpen}
               className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
             >
-              <p className="text-sm font-medium leading-none text-white">
+                <p className="text-sm font-medium leading-none text-white">
                 Add Project
               </p>
+              
             </button>
+            }
           </div>
         );
 
@@ -248,6 +262,7 @@ import { Textarea } from "@material-tailwind/react";
                       icon={<MdOutlineSearch />}
                     />
                   </div>
+                  {canCreateProject()&&
                   <button
                     onClick={this.handleOpen}
                     className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
@@ -255,7 +270,7 @@ import { Textarea } from "@material-tailwind/react";
                     <p className="text-sm font-medium leading-none text-white">
                       Add Project
                     </p>
-                  </button>
+                  </button>}
                 </div>
                 <div className="mt-7 overflow-x-auto">
                   <table className="w-full whitespace-nowrap">
@@ -312,6 +327,16 @@ import { Textarea } from "@material-tailwind/react";
                               <button className="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">
                                 More
                               </button>
+                              </td>
+                              <td className="pl-4">
+                              {
+                                canUpdateProjectProgress(application)&&
+                              <button 
+                              onClick={()=>this.showEditProjectProgress(application)} 
+                              className="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">
+                                Edit Progress
+                              </button>
+                              }
                             </td>
                           </tr>
                         ))}
@@ -411,6 +436,38 @@ import { Textarea } from "@material-tailwind/react";
               </Button>
               <Button onClick={this.handleSubmit}>
                 <span>Create</span>
+              </Button>
+            </DialogFooter>
+          </Dialog>
+          <Dialog
+          open={this.state?.showEditProgess}
+          >
+            <DialogBody>
+            <div className="bg-white p-8 w-full lg:col-span-3 lg:p-12">
+                <div className="flex flex-col w-full items-end gap-4">
+                  <Input
+                    label="Title"
+                    type="text"
+                    name="p_title"
+                    value={this.state?.selectedProject?.title}
+                    readOnly={true}
+                  />
+                  <Select
+                  label="Status"
+                  name="status"
+                  >
+                    <Option>PENDING</Option>
+                    <Option>ACTIVE</Option>
+                  </Select>
+                </div>
+              </div>
+            </DialogBody>
+            <DialogFooter>
+              <Button onClick={()=>this.hideEditProjectProgress()} className="mr-1">
+                Cancel
+              </Button>
+              <Button>
+                <span>Save</span>
               </Button>
             </DialogFooter>
           </Dialog>

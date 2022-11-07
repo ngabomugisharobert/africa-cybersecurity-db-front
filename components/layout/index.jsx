@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
-import { manager, project_owner, user } from "./role";
+import { admin, coordinator, manager, project_owner, reviewer, user } from "./role";
 import Navbar from "../elements/Navbar";
 import Sidebar from "../elements/Sidebar";
 const Index = ({ children }) => {
@@ -18,11 +18,17 @@ const Index = ({ children }) => {
   useEffect(() => {
     if (role === "user") {
       setUserMenu(user);
-    } else if (role === "manager") {
-      setUserMenu(manager);
+    } else if (role === "admin") {
+      setUserMenu(admin);
     } else if (role === "project_owner") {
       setUserMenu(project_owner);
-    }
+    } else if (role === "manager") {
+      setUserMenu(manager);
+    } else if (role === "coordinator") {
+      setUserMenu(coordinator);
+    } else if (role === "reviewer") {
+      setUserMenu(reviewer);
+    } 
   }, [role]);
 
   return (

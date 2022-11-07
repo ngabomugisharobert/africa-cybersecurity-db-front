@@ -1,0 +1,4 @@
+web: gunicorn CCMS.wsgi --log-file -
+web: heroku config:set DISABLE_COLLECTSTATIC=1
+web: pip install -r requirements.txt
+web: python manage.py runserver
